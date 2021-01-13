@@ -10,12 +10,10 @@ const daoDir = "handler/dao/"
 
 func init() {
 	os.MkdirAll(daoDir, 0777)
-	//_, err := os.Stat(daoDir)
-	//if err != nil {
-	//	os.MkdirAll(daoDir, 0777)
-	//}
+
 }
 
+//BuildDao 生成Dao
 func BuildDao(data []interface{},db string) {
 
 	for _, da := range data {

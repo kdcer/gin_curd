@@ -23,7 +23,7 @@ func init() {
 
 
 }
-
+//BuildRouter 生成路由
 func BuildRouter(data []interface{}) {
 	file, err := createFile(dir+"/"+routerFile)
 	if err != nil {

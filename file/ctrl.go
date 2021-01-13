@@ -13,6 +13,7 @@ func init() {
 	os.MkdirAll(ctrlDir, 0777)
 }
 
+//BuildCtrl 生成ctrl
 func BuildCtrl(data []interface{}) {
 	var daoPkg string
 	for _, da := range data {

@@ -11,6 +11,7 @@ const (
 )
 
 type (
+	//File go文件的组成
 	File struct {
 		Pkg    string
 		Class  *Class
@@ -30,6 +31,7 @@ type (
 	}
 )
 
+//SetClass 设置struct
 func (f *File) SetClass(name, Type string) *Class {
 	f.Class = &Class{
 		Type: Type,
@@ -40,6 +42,7 @@ func (f *File) SetClass(name, Type string) *Class {
 
 }
 
+//NewFunc
 func (f *File) NewFunc(name, parameter, ret, body string) {
 
 	f.Func = append(f.Func, Func{
@@ -60,6 +63,7 @@ func (f *File) findFunc(name string) *Func {
 	return nil
 }
 
+//Func2String
 func (f *File) Func2String() string {
 	var funcStr strings.Builder
 	for _, fu := range f.Func {
@@ -87,10 +91,14 @@ func (f *File) Func2String() string {
 	}
 	return funcStr.String()
 }
+
+//Pkg2String
 func (f *File) Pkg2String() string {
 	return "package " + f.Pkg + "\n"
 
 }
+
+//Import2String
 func (f *File) Import2String() string {
 	var importBody strings.Builder
 	importBody.WriteString("import(\n")
@@ -116,6 +124,8 @@ func (c *Class) String() string {
 	}
 	return fmt.Sprintf("type %s struct{\n%s} \n", c.Name, classBody.String())
 }
+
+//AddBody func 添加内容
 func (f *Func) AddBody(body ...string) {
 
 	*(f.Body) = append(*(f.Body), body...)
