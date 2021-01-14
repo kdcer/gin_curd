@@ -33,7 +33,7 @@ func BuildRouter(data []interface{}) {
 	router.Pkg = "router \n"
 	router.Import = append(router.Import, "github.com/gin-gonic/gin")
 
-	router.NewFunc("InitRouter", "", "engine *gin.Engine", "\tengine = gin.Default() \n")
+	router.NewFunc("","InitRouter", "", "engine *gin.Engine", "\tengine = gin.Default() \n")
 	for _, da := range data {
 		of := reflect.TypeOf(da)
 		modelPkg:=of.Elem().PkgPath()
@@ -49,6 +49,7 @@ func BuildRouter(data []interface{}) {
 		//body += fmt.Sprintf("\t\t%s.GET(\"\",%s.%sCtrl.%s) \n", lowerName, "ctrl", name, "List")
 		ctrlStr:=fmt.Sprintf("\t\t%sCtrl:=new(ctrl.%sCtrl)\n",lowerName,name)
 		body += fmt.Sprintf(ctrlStr)
+		body += fmt.Sprintf("\t\t%s.GET(\"\",%sCtrl.%s) \n", lowerName, lowerName, "List")
 		body += fmt.Sprintf("\t\t%s.GET(\"/:id\",%sCtrl.%s) \n", lowerName, lowerName, "Info")
 		body += fmt.Sprintf("\t\t%s.POST(\"\",%sCtrl.%s) \n", lowerName, lowerName, "Create")
 		body += fmt.Sprintf("\t\t%s.PUT(\"/:id\",%sCtrl.%s) \n", lowerName, lowerName, "Update")
